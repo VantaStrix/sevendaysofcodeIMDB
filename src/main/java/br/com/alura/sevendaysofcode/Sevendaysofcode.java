@@ -16,6 +16,9 @@ import java.net.http.*;
 import java.util.ArrayList;
 import java.util.List;
 import br.com.alura.sevendaysofcode.Filme;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -64,6 +67,12 @@ public class Sevendaysofcode {
             //System.out.println("Título: " + titulos.get(titulos.size() - 1) + " - Ano: " + anos.get(anos.size() - 1) + " - Nota: " + notas.get(notas.size() - 1));
             //System.out.println(filmes.get(filmes.size() - 1).getTitulo());
         }
-
+        
+        try (PrintWriter writer = new PrintWriter("new.html", "utf-8")) {
+            HTMLGenerator generator = new HTMLGenerator(writer);
+            generator.generate(filmes);
+        } catch (FileNotFoundException | UnsupportedEncodingException ex) {
+            Logger.getLogger(Sevendaysofcode.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
