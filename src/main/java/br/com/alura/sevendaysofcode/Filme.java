@@ -74,6 +74,4 @@ public final class Filme {
         return Objects.equals(this.ano, other.ano);
     }
     
-    
-    
 }
