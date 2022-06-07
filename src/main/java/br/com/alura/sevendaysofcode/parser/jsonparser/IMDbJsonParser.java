@@ -5,30 +5,44 @@
 package br.com.alura.sevendaysofcode;
 
 import java.util.List;
-import br.com.alura.sevendaysofcode.Filme;
+import br.com.alura.sevendaysofcode.conteudo.Conteudo;
+import br.com.alura.sevendaysofcode.conteudo.FilmeIMDB;
+import br.com.alura.sevendaysofcode.parser.jsonparser.JsonParser;
 import java.util.ArrayList;
 
 /**
  *
  * @author VantaStrix88
  */
-public class IMDBJsonParser {
-    
-    public static List<Filme> parse (String json) {
+public class IMDbJsonParser implements JsonParser {
+
+    private static IMDbJsonParser instance;
+
+    private IMDbJsonParser() {}
+
+    public static IMDbJsonParser getInstance() {
+        if (IMDbJsonParser.instance == null) {
+            IMDbJsonParser.instance = new IMDbJsonParser();
+        }
+        return IMDbJsonParser.instance;
+    }
+
+    @Override
+    public List<FilmeIMDB> parse(String json) {
         System.out.println(json);
         String[] obras = json.replace("},{", "=").split("=");
-        List<Filme> filmes = new ArrayList<>();
+        List<FilmeIMDB> filmes = new ArrayList<>();
         for (String obra : obras) {
-  
+
             String titulo = obra.substring(obra.indexOf("\"title\"") + 9, obra.indexOf(",\"fullTitle\"") - 1);
             String ano = obra.substring(obra.indexOf("\"year\"") + 8, obra.indexOf(",\"image\"") - 1);
             String nota = obra.substring(obra.indexOf("\"imDbRating\"") + 14, obra.indexOf(",\"imDbRatingCount\"") - 1);
             String posterURL = obra.substring(obra.indexOf("\"image\"") + 9, obra.indexOf(",\"crew\"") - 1);
-            
-            filmes.add(new Filme(titulo, posterURL, nota, ano));
+
+            filmes.add(new FilmeIMDB(titulo, posterURL, nota, ano));
         }
         System.out.println(filmes.size());
         return filmes;
     }
-    
+
 }

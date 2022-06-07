@@ -4,9 +4,9 @@
  */
 package br.com.alura.sevendaysofcode;
 
+import br.com.alura.sevendaysofcode.conteudo.Conteudo;
 import java.io.PrintWriter;
 import java.util.List;
-import br.com.alura.sevendaysofcode.Filme;
 
 /**
  *
@@ -20,7 +20,7 @@ public class HTMLGenerator {
         this.writer = writer;
     }
     
-    public void generate(List<Filme> filmes) {
+    public void generate(List<? extends Conteudo> conteudo) {
         String head =
                 """
                 <head>
@@ -36,17 +36,17 @@ public class HTMLGenerator {
                     <h4 class=\"card-header\">%s</h4>
                     <div class=\"card-body\">
                 	<img class=\"card-img\" src=\"%s\" alt=\"%s\">
-                	<p class=\"card-text mt-2\">Nota: %s - Ano: %s</p>
+                	<p class=\"card-text mt-2\">Rating: %s - Ano: %s</p>
                     </div>
                 </div>
                 """;
         this.writer.println("<html>");
         this.writer.println(head);
         this.writer.println("<body>");
-        for (var filme : filmes) {
-            this.writer.println(String.format(divTemplate, filme.getTitulo(),
-                    filme.getPosterURL(), filme.getTitulo(), filme.getNota(),
-                    filme.getAno()));
+        for (var obra : conteudo) {
+            this.writer.println(String.format(divTemplate, obra.getTitulo(),
+                    obra.getPosterURL(), obra.getTitulo(), obra.getRating(),
+                    obra.getAno()));
         }
         this.writer.println("</body>" + System.lineSeparator() + "</html>");
     }
