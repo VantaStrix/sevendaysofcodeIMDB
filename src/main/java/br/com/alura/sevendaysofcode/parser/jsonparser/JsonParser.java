@@ -4,8 +4,9 @@
  */
 package br.com.alura.sevendaysofcode.parser.jsonparser;
 
-import br.com.alura.sevendaysofcode.conteudo.Conteudo;
 import java.util.List;
+
+import br.com.alura.sevendaysofcode.conteudo.Conteudo;
 
 /**
  *

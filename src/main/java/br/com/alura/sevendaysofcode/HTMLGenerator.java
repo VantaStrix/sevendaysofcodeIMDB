@@ -4,9 +4,10 @@
  */
 package br.com.alura.sevendaysofcode;
 
-import br.com.alura.sevendaysofcode.conteudo.Conteudo;
 import java.io.PrintWriter;
 import java.util.List;
+
+import br.com.alura.sevendaysofcode.conteudo.Conteudo;
 
 /**
  *

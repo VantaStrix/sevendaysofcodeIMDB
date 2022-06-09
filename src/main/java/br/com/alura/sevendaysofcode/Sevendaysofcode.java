@@ -4,22 +4,24 @@
  */
 package br.com.alura.sevendaysofcode;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import br.com.alura.sevendaysofcode.api.IMDbAPIClient;
+import br.com.alura.sevendaysofcode.api.MarvelAPIClient;
+import br.com.alura.sevendaysofcode.conteudo.FilmeIMDB;
+import br.com.alura.sevendaysofcode.conteudo.MarvelSeries;
+import br.com.alura.sevendaysofcode.parser.jsonparser.IMDbJsonParser;
+import br.com.alura.sevendaysofcode.parser.jsonparser.MarvelJsonParser;
+
 /**
  *
  * @author VantaStrix88
  */
-import br.com.alura.sevendaysofcode.api.IMDbAPIClient;
-import br.com.alura.sevendaysofcode.api.MarvelAPIClient;
-import java.util.List;
-import br.com.alura.sevendaysofcode.conteudo.Conteudo;
-import br.com.alura.sevendaysofcode.conteudo.FilmeIMDB;
-import br.com.alura.sevendaysofcode.conteudo.MarvelSeries;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 public class Sevendaysofcode {
 
     public static void main(String[] args) {

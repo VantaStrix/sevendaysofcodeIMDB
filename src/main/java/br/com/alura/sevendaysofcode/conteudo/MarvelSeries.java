@@ -4,6 +4,8 @@
  */
 package br.com.alura.sevendaysofcode.conteudo;
 
+import java.util.Objects;
+
 /**
  *
  * @author VantaStrix88
@@ -40,6 +42,40 @@ public class MarvelSeries implements Conteudo {
     @Override
     public String getAno() {
         return ano;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 89 * hash + Objects.hashCode(this.titulo);
+        hash = 89 * hash + Objects.hashCode(this.posterURL);
+        hash = 89 * hash + Objects.hashCode(this.rating);
+        hash = 89 * hash + Objects.hashCode(this.ano);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final MarvelSeries other = (MarvelSeries) obj;
+        if (!Objects.equals(this.titulo, other.titulo)) {
+            return false;
+        }
+        if (!Objects.equals(this.posterURL, other.posterURL)) {
+            return false;
+        }
+        if (!Objects.equals(this.rating, other.rating)) {
+            return false;
+        }
+        return Objects.equals(this.ano, other.ano);
     }
 
 }
