@@ -11,11 +11,11 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import br.com.alura.sevendaysofcode.api.IMDbAPIClient;
-import br.com.alura.sevendaysofcode.api.MarvelAPIClient;
-import br.com.alura.sevendaysofcode.conteudo.FilmeIMDB;
+import br.com.alura.sevendaysofcode.api.ImdbApiClient;
+import br.com.alura.sevendaysofcode.api.MarvelApiClient;
+import br.com.alura.sevendaysofcode.conteudo.FilmeImdb;
 import br.com.alura.sevendaysofcode.conteudo.MarvelSeries;
-import br.com.alura.sevendaysofcode.parser.jsonparser.IMDbJsonParser;
+import br.com.alura.sevendaysofcode.parser.jsonparser.ImdbJsonParser;
 import br.com.alura.sevendaysofcode.parser.jsonparser.MarvelJsonParser;
 
 /**
@@ -25,19 +25,19 @@ import br.com.alura.sevendaysofcode.parser.jsonparser.MarvelJsonParser;
 public class Sevendaysofcode {
 
     public static void main(String[] args) {
-        String imdbBody = IMDbAPIClient.getInstance().getResponseBody("https://imdb-api.com/en/API/Top250Movies/");
-        List<FilmeIMDB> filmes = IMDbJsonParser.getInstance().parse(imdbBody);
+        String imdbBody = ImdbApiClient.getInstance().getResponseBody("https://imdb-api.com/en/API/Top250Movies/");
+        List<FilmeImdb> filmes = ImdbJsonParser.getInstance().parse(imdbBody);
         try (PrintWriter writer = new PrintWriter("filmesimdb.html", "utf-8")) {
-            HTMLGenerator generator = new HTMLGenerator(writer);
+            HtmlGenerator generator = new HtmlGenerator(writer);
             generator.generate(filmes);
         } catch (FileNotFoundException | UnsupportedEncodingException ex) {
             Logger.getLogger(Sevendaysofcode.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        String marvelBody = MarvelAPIClient.getInstance().getResponseBody("https://gateway.marvel.com/v1/public/series?");
+        String marvelBody = MarvelApiClient.getInstance().getResponseBody("https://gateway.marvel.com/v1/public/series?");
         List<MarvelSeries> series = MarvelJsonParser.getInstance().parse(marvelBody);
         try (PrintWriter writer = new PrintWriter("marvelseries.html", "utf-8")) {
-            HTMLGenerator generator = new HTMLGenerator(writer);
+            HtmlGenerator generator = new HtmlGenerator(writer);
             generator.generate(series);
         } catch (FileNotFoundException | UnsupportedEncodingException ex) {
             Logger.getLogger(Sevendaysofcode.class.getName()).log(Level.SEVERE, null, ex);
